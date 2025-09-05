@@ -5,7 +5,12 @@ let amigoSecreto = [];
 //Função que adiciona os amigos na lista
 function adicionar (){
     let nome = document.getElementById('nome-amigo').value;
-    amigos.push(nome);
+    if (nome == '' || amigos.includes(nome)){
+        alert ('Informe o nome do participante sem repetir!');
+        return;
+    } else {
+        amigos.push(nome);
+    }
 
 //Listando amigos já adicionados
 participantes = document.getElementById('lista-amigos');
@@ -15,6 +20,10 @@ participantes.innerHTML = `${amigos}`;
 
 //Função que sorteia
 function sortear(){
+    if (amigos.length < 3){
+    alert('Adicione pelo menos 3 amigos!');
+    return;
+    } else {
     amigoSecreto = [];
     for (let i = 0; i < amigos.length; i++){       
         let sorteio;
@@ -26,6 +35,7 @@ function sortear(){
         amigoSecreto[i] = amigos[sorteio];
     }
     apresentarResultado();    
+    }
 }
 
 //Função que reinicia o jogo()
